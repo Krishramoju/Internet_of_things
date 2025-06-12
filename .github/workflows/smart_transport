@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🚗 Neuro OS – Smart Transportation</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4faff;
+      color: #2c3e50;
+    }
+
+    header {
+      background: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 30px 15px;
+    }
+
+    h1 { font-size: 2.5em; margin-bottom: 0; }
+    p.subtitle {
+      margin-top: 5px;
+      font-size: 1.1em;
+      color: #cce7ff;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .module {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      margin-bottom: 30px;
+      padding: 25px;
+    }
+
+    .module h2 {
+      color: #2980b9;
+      margin-top: 0;
+    }
+
+    .tag {
+      background: #d7ecff;
+      color: #1b4f72;
+      font-size: 0.85em;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-weight: bold;
+      margin-right: 6px;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    li {
+      margin-bottom: 14px;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    li::before {
+      content: "🚗";
+      position: absolute;
+      left: 0;
+      color: #2980b9;
+    }
+
+    .chatbot {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+    }
+
+    .chat-window {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      height: 250px;
+      overflow-y: auto;
+      padding: 10px;
+      background: #fdfdfd;
+      margin-bottom: 10px;
+      font-size: 0.95em;
+    }
+
+    .chat-bubble {
+      margin: 8px 0;
+    }
+
+    .user {
+      text-align: right;
+      color: #3498db;
+    }
+
+    .bot {
+      text-align: left;
+      color: #333;
+    }
+
+    input[type="text"] {
+      width: 80%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-right: 5px;
+    }
+
+    button {
+      padding: 10px 14px;
+      background-color: #2980b9;
+      border: none;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #21618c;
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 2em; }
+      input[type="text"] { width: 100%; margin-bottom: 10px; }
+      button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🚗 Neuro OS in Smart Transportation</h1>
+    <p class="subtitle">Revolutionizing mobility with intelligence</p>
+  </header>
+
+  <div class="container">
+
+    <div class="module">
+      <h2>📡 Connected Vehicles</h2>
+      <ul>
+        <li><span class="tag">V2V</span> Vehicle-to-Vehicle communication for collision avoidance</li>
+        <li><span class="tag">V2I</span> Vehicle-to-Infrastructure to share traffic & weather data</li>
+      </ul>
+    </div>
+
+    <div class="module">
+      <h2>🚛 Fleet Management</h2>
+      <ul>
+        <li><span class="tag">Live Tracking</span> Real-time location data for logistics and delivery</li>
+        <li><span class="tag">Route Optimization</span> Fuel-efficient routing via Neuro OS algorithms</li>
+      </ul>
+    </div>
+
+    <div class="module">
+      <h2>🚦 Traffic Monitoring</h2>
+      <ul>
+        <li><span class="tag">Congestion Alerts</span> Dynamic rerouting based on real-time conditions</li>
+        <li><span class="tag">City Sync</span> IoT sync with smart traffic signals for flow optimization</li>
+      </ul>
+    </div>
+
+    <div class="module">
+      <h2>🤖 Autonomous Vehicles</h2>
+      <ul>
+        <li><span class="tag">LiDAR / Radar</span> Enables environmental awareness & navigation</li>
+        <li><span class="tag">GPS Integration</span> Real-time route guidance and updates</li>
+      </ul>
+    </div>
+
+    <div class="module">
+      <h2>🧠 Driver Health Monitoring</h2>
+      <ul>
+        <li><span class="tag">Fatigue Detection</span> Alerts when driver shows signs of drowsiness</li>
+        <li><span class="tag">Alcohol Monitoring</span> Prevents ignition if unsafe levels detected</li>
+      </ul>
+    </div>
+
+    <div class="module chatbot">
+      <h2>🗣 AutoBot Chat</h2>
+      <div class="chat-window" id="chatWindow">
+        <div class="chat-bubble bot">Welcome to Neuro Transport Assistant! Ask me anything about your vehicle or routes.</div>
+      </div>
+      <input type="text" id="userInput" placeholder="Ask about driver fatigue, fleet, traffic..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+
+  </div>
+
+  <script>
+    function sendMessage() {
+      const input = document.getElementById('userInput');
+      const message = input.value.trim();
+      if (!message) return;
+
+      const chatWindow = document.getElementById('chatWindow');
+
+      const userBubble = document.createElement('div');
+      userBubble.className = 'chat-bubble user';
+      userBubble.textContent = message;
+      chatWindow.appendChild(userBubble);
+
+      const botBubble = document.createElement('div');
+      botBubble.className = 'chat-bubble bot';
+
+      let response = "Analyzing your request...";
+
+      const lower = message.toLowerCase();
+      if (lower.includes("fleet")) {
+        response = "Fleet tracking is available via Neuro OS Fleet Dashboard with real-time route data.";
+      } else if (lower.includes("traffic")) {
+        response = "We use AI-powered rerouting to guide you through least congested paths.";
+      } else if (lower.includes("driver") || lower.includes("health")) {
+        response = "Driver alertness and BAC are monitored in real-time using cabin sensors.";
+      } else if (lower.includes("vehicle") || lower.includes("autonomous")) {
+        response = "Our autonomous stack uses LiDAR, radar, and GPS for complete environment mapping.";
+      }
+
+      botBubble.textContent = response;
+      chatWindow.appendChild(botBubble);
+      chatWindow.scrollTop = chatWindow.scrollHeight;
+      input.value = '';
+    }
+  </script>
+
+</body>
+</html>
