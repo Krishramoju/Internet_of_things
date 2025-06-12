@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🧑‍🌾 Neuro OS – Smart Agriculture</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9fff2;
+      color: #2c3e50;
+    }
+
+    header {
+      background: #27ae60;
+      color: white;
+      text-align: center;
+      padding: 30px 15px;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 0;
+    }
+
+    p.subtitle {
+      margin-top: 5px;
+      font-size: 1.1em;
+      color: #dbf7e0;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .module {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      margin-bottom: 30px;
+      padding: 25px;
+    }
+
+    .module h2 {
+      color: #2ecc71;
+      margin-top: 0;
+    }
+
+    .tag {
+      background: #d6ffe3;
+      color: #145a32;
+      font-size: 0.85em;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-weight: bold;
+      margin-right: 6px;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    li {
+      margin-bottom: 14px;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    li::before {
+      content: "🌾";
+      position: absolute;
+      left: 0;
+      color: #27ae60;
+    }
+
+    .chatbot {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+    }
+
+    .chat-window {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      height: 250px;
+      overflow-y: auto;
+      padding: 10px;
+      background: #fdfdfd;
+      margin-bottom: 10px;
+      font-size: 0.95em;
+    }
+
+    .chat-bubble {
+      margin: 8px 0;
+    }
+
+    .user {
+      text-align: right;
+      color: #27ae60;
+    }
+
+    .bot {
+      text-align: left;
+      color: #333;
+    }
+
+    input[type="text"] {
+      width: 80%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-right: 5px;
+    }
+
+    button {
+      padding: 10px 14px;
+      background-color: #27ae60;
+      border: none;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #1e8449;
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 2em; }
+      input[type="text"] { width: 100%; margin-bottom: 10px; }
+      button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🧑‍🌾 Neuro OS – Smart Agriculture</h1>
+    <p class="subtitle">Empowering farmers through connected technology</p>
+  </header>
+
+  <div class="container">
+
+    <div class="module">
+      <h2>🌦️ Precision Farming</h2>
+      <ul>
+        <li><span class="tag">Sensor Grids</span> Monitor soil moisture, pH, and temperature in real time</li>
+        <li><span class="tag">Crop Recommendations</span> AI-based suggestions for optimal planting</li>
+      </ul>
+    </div>
+
+    <div class="module">
+      <h2>🚜 Smart Irrigation</h2>
+      <ul>
+        <li><span class="tag">Automated Pumps</span> Triggered based on real-time moisture data</li>
+        <li><span class="tag">Water Conservation</span> Minimizes usage with sensor-led insights</li>
+      </ul>
+    </div>
+
+    <div class="module">
+      <h2>🐄 Livestock Monitoring</h2>
+      <ul>
+        <li><span class="tag">Health Trackers</span> Wearables for cattle to detect illness or irregular behavior</li>
+        <li><span class="tag">Geo-fencing</span> Alerts for cattle leaving designated zones</li>
+      </ul>
+    </div>
+
+    <div class="module">
+      <h2>🛰️ Drones & Imaging</h2>
+      <ul>
+        <li><span class="tag">Crop Imaging</span> NDVI & thermal maps for health and yield analysis</li>
+        <li><span class="tag">Spraying Automation</span> Targeted pesticide/fertilizer use via drones</li>
+      </ul>
+    </div>
+
+    <!-- Chatbot UI -->
+    <div class="module chatbot">
+      <h2>💬 AgriBot Advisor</h2>
+      <div class="chat-window" id="chatWindow">
+        <div class="chat-bubble bot">Hi farmer! Ask me about irrigation, soil sensors, cattle tracking, or drones.</div>
+      </div>
+      <input type="text" id="userInput" placeholder="Ask about soil, water, crops, or drones..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+
+  </div>
+
+  <script>
+    function sendMessage() {
+      const input = document.getElementById('userInput');
+      const message = input.value.trim();
+      if (!message) return;
+
+      const chatWindow = document.getElementById('chatWindow');
+
+      const userBubble = document.createElement('div');
+      userBubble.className = 'chat-bubble user';
+      userBubble.textContent = message;
+      chatWindow.appendChild(userBubble);
+
+      const botBubble = document.createElement('div');
+      botBubble.className = 'chat-bubble bot';
+      let response = "Analyzing your agri-tech query...";
+
+      const lower = message.toLowerCase();
+      if (lower.includes("soil")) {
+        response = "Our soil sensors track moisture, pH, and temperature to optimize crop health.";
+      } else if (lower.includes("water") || lower.includes("irrigation")) {
+        response = "Smart irrigation automates water delivery based on soil conditions, conserving resources.";
+      } else if (lower.includes("drone")) {
+        response = "Drones provide crop imaging, detect issues, and can spray with pinpoint accuracy.";
+      } else if (lower.includes("cattle") || lower.includes("livestock")) {
+        response = "Cattle wearables monitor vitals and send alerts for health or location concerns.";
+      }
+
+      botBubble.textContent = response;
+      chatWindow.appendChild(botBubble);
+      chatWindow.scrollTop = chatWindow.scrollHeight;
+      input.value = '';
+    }
+  </script>
+
+</body>
+</html>
