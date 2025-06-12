@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🏥 Neuro OS in Smart Healthcare</title>
+  <style>
+    body {
+      margin: 0; padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f8ff;
+      color: #2c3e50;
+    }
+    header {
+      background: #0077cc;
+      color: white;
+      text-align: center;
+      padding: 30px 15px;
+    }
+    h1 { font-size: 2.5em; margin-bottom: 0; }
+    p.subtitle { margin-top: 5px; font-size: 1.1em; color: #e0f0ff; }
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+    .module {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      margin-bottom: 30px;
+      padding: 25px;
+    }
+    .module h2 {
+      color: #1a73e8;
+      margin-top: 0;
+    }
+    .tag {
+      background: #d4e9ff;
+      color: #004b87;
+      font-size: 0.9em;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: bold;
+      margin-right: 6px;
+    }
+    ul { list-style: none; padding-left: 0; }
+    li {
+      margin-bottom: 14px;
+      padding-left: 20px;
+      position: relative;
+    }
+    li::before {
+      content: "✔";
+      position: absolute;
+      left: 0;
+      color: #28a745;
+    }
+
+    /* Chatbot UI */
+    .chatbot {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+    }
+    .chat-window {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      height: 250px;
+      overflow-y: auto;
+      padding: 10px;
+      background: #fdfdfd;
+      margin-bottom: 10px;
+      font-size: 0.95em;
+    }
+    .chat-bubble { margin: 8px 0; }
+    .user { text-align: right; color: #0077cc; }
+    .bot { text-align: left; color: #444; }
+    input[type="text"] {
+      width: 85%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-right: 5px;
+    }
+    button {
+      padding: 10px 14px;
+      background-color: #0077cc;
+      border: none;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover { background-color: #005fa3; }
+    @media (max-width: 768px) {
+      h1 { font-size: 1.8em; }
+      input[type="text"] { width: 100%; margin-bottom: 10px; }
+      button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🏥 Neuro OS in Smart Healthcare</h1>
+    <p class="subtitle">AI + IoT modules transforming patient care</p>
+  </header>
+
+  <div class="container">
+
+    <div class="module">
+      <h2>🧠 Chatbot Module</h2>
+      <ul>
+        <li><span class="tag">Remote Care</span> Helps patients with medical queries and appointment scheduling</li>
+        <li><span class="tag">Mental Health</span> Early anxiety/depression screening through conversation</li>
+      </ul>
+    </div>
+
+    <div class="module">
+      <h2>🧩 Brain Teaser Module</h2>
+      <ul>
+        <li><span class="tag">Cognitive Tracking</span> Monitors memory & focus through gamified assessments</li>
+        <li><span class="tag">Neuro Stats</span> Stores progress and flags unusual cognitive decline</li>
+      </ul>
+    </div>
+
+    <div class="module">
+      <h2>📝 Recruitment Module</h2>
+      <ul>
+        <li><span class="tag">AI Screening</span> Identifies healthcare workers skilled in IoT tech</li>
+        <li><span class="tag">Medical Readiness</span> Matches candidates to emergency care needs</li>
+      </ul>
+    </div>
+
+    <div class="module">
+      <h2>📡 IoT Healthcare Integration</h2>
+      <ul>
+        <li><span class="tag">Vitals Monitoring</span> Wearables stream SpO₂, HR, BP to Neuro OS dashboards</li>
+        <li><span class="tag">Smart Ambulance</span> Sends live data to hospitals en route</li>
+        <li><span class="tag">Smart Pills</span> Tracks dosage and reminders via connected devices</li>
+        <li><span class="tag">AI Surgery</span> Connects to robotics for precision operations</li>
+        <li><span class="tag">Elderly Alerts</span> Fall detection and SOS response integration</li>
+      </ul>
+    </div>
+
+    <!-- Chatbot Interface -->
+    <div class="module chatbot">
+      <h2>💬 NeuroCare Chatbot</h2>
+      <div class="chat-window" id="chatWindow">
+        <div class="chat-bubble bot">Hello! I'm your NeuroCare assistant. How can I help today?</div>
+      </div>
+      <input type="text" id="userInput" placeholder="Type your health query..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+
+  </div>
+
+  <script>
+    function sendMessage() {
+      const input = document.getElementById('userInput');
+      const message = input.value.trim();
+      if (message === "") return;
+
+      const chatWindow = document.getElementById('chatWindow');
+
+      const userBubble = document.createElement('div');
+      userBubble.className = 'chat-bubble user';
+      userBubble.textContent = message;
+      chatWindow.appendChild(userBubble);
+
+      const botBubble = document.createElement('div');
+      botBubble.className = 'chat-bubble bot';
+
+      // Mock response system
+      let response = "I'm analyzing your message...";
+
+      if (message.toLowerCase().includes("blood pressure")) {
+        response = "High blood pressure often has no symptoms. Regular monitoring is key. If severe, it can cause headaches or dizziness.";
+      } else if (message.toLowerCase().includes("appointment")) {
+        response = "Sure! Would you like to book a general physician or a specialist?";
+      } else if (message.toLowerCase().includes("reminder") || message.toLowerCase().includes("pill")) {
+        response = "You can set medication reminders in the Smart Inhaler module. Want me to guide you?";
+      } else if (message.toLowerCase().includes("mental health")) {
+        response = "We offer guided support for anxiety and stress. Would you like a quick screening?";
+      }
+
+      botBubble.textContent = response;
+      chatWindow.appendChild(botBubble);
+
+      chatWindow.scrollTop = chatWindow.scrollHeight;
+      input.value = '';
+    }
+  </script>
+
+</body>
+</html>
