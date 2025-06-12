@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🏠 Neuro OS in Smart Homes</title>
+  <style>
+    body {
+      margin: 0; padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f8f9fa;
+      color: #2c3e50;
+    }
+    header {
+      background: #34495e;
+      color: white;
+      text-align: center;
+      padding: 30px 15px;
+    }
+    h1 { font-size: 2.5em; margin-bottom: 0; }
+    p.subtitle { margin-top: 5px; font-size: 1.1em; color: #dfe6ec; }
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+    .module {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      margin-bottom: 30px;
+      padding: 25px;
+    }
+    .module h2 {
+      color: #2980b9;
+      margin-top: 0;
+    }
+    .tag {
+      background: #e8f0fe;
+      color: #2c3e50;
+      font-size: 0.9em;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: bold;
+      margin-right: 6px;
+    }
+    ul { list-style: none; padding-left: 0; }
+    li {
+      margin-bottom: 14px;
+      padding-left: 20px;
+      position: relative;
+    }
+    li::before {
+      content: "🏡";
+      position: absolute;
+      left: 0;
+      color: #27ae60;
+    }
+
+    /* Chatbot UI */
+    .chatbot {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+    }
+    .chat-window {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      height: 250px;
+      overflow-y: auto;
+      padding: 10px;
+      background: #fdfdfd;
+      margin-bottom: 10px;
+      font-size: 0.95em;
+    }
+    .chat-bubble { margin: 8px 0; }
+    .user { text-align: right; color: #3498db; }
+    .bot { text-align: left; color: #444; }
+    input[type="text"] {
+      width: 85%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-right: 5px;
+    }
+    button {
+      padding: 10px 14px;
+      background-color: #2980b9;
+      border: none;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover { background-color: #21618c; }
+    @media (max-width: 768px) {
+      h1 { font-size: 1.8em; }
+      input[type="text"] { width: 100%; margin-bottom: 10px; }
+      button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🏠 Neuro OS in Smart Homes</h1>
+    <p class="subtitle">Intelligent living powered by AI & IoT</p>
+  </header>
+
+  <div class="container">
+
+    <div class="module">
+      <h2>🎙 Voice Assistants</h2>
+      <ul>
+        <li><span class="tag">Alexa / Google Home</span> Controls lights, appliances, security</li>
+        <li><span class="tag">Custom Commands</span> Interact with Neuro OS modules by voice</li>
+      </ul>
+    </div>
+
+    <div class="module">
+      <h2>💡 Smart Lighting & HVAC</h2>
+      <ul>
+        <li><span class="tag">Motion Sensors</span> Adjust lighting based on presence</li>
+        <li><span class="tag">Time-Based Control</span> Energy-saving automation routines</li>
+      </ul>
+    </div>
+
+    <div class="module">
+      <h2>🔐 Security Systems</h2>
+      <ul>
+        <li><span class="tag">Smart Locks</span> Control entry remotely via app or voice</li>
+        <li><span class="tag">IoT Cameras</span> Live feed and motion alerts sent to your phone</li>
+      </ul>
+    </div>
+
+    <div class="module">
+      <h2>⚡ Energy Monitoring</h2>
+      <ul>
+        <li><span class="tag">Smart Meters</span> Track usage in real-time</li>
+        <li><span class="tag">Thermostats</span> Auto-regulate based on environment & habits</li>
+      </ul>
+    </div>
+
+    <div class="module">
+      <h2>🍳 Smart Kitchens</h2>
+      <ul>
+        <li><span class="tag">IoT Appliances</span> Connected fridges, coffee makers, ovens</li>
+        <li><span class="tag">Remote Control</span> Preheat oven or make coffee from your phone</li>
+      </ul>
+    </div>
+
+    <!-- Chatbot Interface -->
+    <div class="module chatbot">
+      <h2>🤖 SmartHome Assistant Chatbot</h2>
+      <div class="chat-window" id="chatWindow">
+        <div class="chat-bubble bot">Hi there! I'm your SmartHome assistant. Ask me anything about lighting, security, or appliances.</div>
+      </div>
+      <input type="text" id="userInput" placeholder="Ask about smart devices..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+
+  </div>
+
+  <script>
+    function sendMessage() {
+      const input = document.getElementById('userInput');
+      const message = input.value.trim();
+      if (message === "") return;
+
+      const chatWindow = document.getElementById('chatWindow');
+
+      const userBubble = document.createElement('div');
+      userBubble.className = 'chat-bubble user';
+      userBubble.textContent = message;
+      chatWindow.appendChild(userBubble);
+
+      const botBubble = document.createElement('div');
+      botBubble.className = 'chat-bubble bot';
+
+      let response = "Processing your request...";
+
+      if (message.toLowerCase().includes("lighting")) {
+        response = "You can automate lighting with motion sensors or schedule it based on time.";
+      } else if (message.toLowerCase().includes("lock")) {
+        response = "Smart locks can be controlled remotely and grant timed access for guests.";
+      } else if (message.toLowerCase().includes("kitchen")) {
+        response = "Smart kitchens use IoT-enabled ovens and fridges to optimize your routines.";
+      } else if (message.toLowerCase().includes("thermostat") || message.toLowerCase().includes("energy")) {
+        response = "Smart thermostats adapt to your preferences and help cut energy bills.";
+      }
+
+      botBubble.textContent = response;
+      chatWindow.appendChild(botBubble);
+
+      chatWindow.scrollTop = chatWindow.scrollHeight;
+      input.value = '';
+    }
+  </script>
+
+</body>
+</html>
