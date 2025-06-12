@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎓 Neuro OS in Education</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f9ff;
+      color: #1c1c1c;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: #34495e;
+      color: white;
+      padding: 30px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+
+    .subtitle {
+      font-size: 1.1em;
+      color: #d9e7f2;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .module {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      padding: 25px;
+      margin-bottom: 25px;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    li {
+      margin: 10px 0;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    li::before {
+      content: "🎓";
+      position: absolute;
+      left: 0;
+    }
+
+    .chatbot {
+      background: #f8f8f8;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      padding: 20px;
+    }
+
+    .chat-window {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      height: 250px;
+      overflow-y: auto;
+      padding: 10px;
+      background: #fff;
+      margin-bottom: 10px;
+      font-size: 0.95em;
+    }
+
+    .chat-bubble {
+      margin: 8px 0;
+    }
+
+    .user {
+      text-align: right;
+      color: #0077cc;
+    }
+
+    .bot {
+      text-align: left;
+      color: #2c3e50;
+    }
+
+    input[type="text"] {
+      width: 80%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #bbb;
+    }
+
+    button {
+      padding: 10px;
+      background: #34495e;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #2b3e50;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🎓 Neuro OS in Education</h1>
+  <p class="subtitle">AI + IoT transforming classrooms, labs, and learning at scale</p>
+</header>
+
+<div class="container">
+
+  <div class="module">
+    <h2>🧑‍🏫 Education IoT Use Cases</h2>
+    <ul>
+      <li><strong>Smart Classrooms:</strong> Automatic attendance, lighting, and air quality adjustment.</li>
+      <li><strong>IoT Labs:</strong> Sensor-based tracking of lab equipment usage and status.</li>
+      <li><strong>Wearable Attendance:</strong> RFID bands or biometric devices recording entry/exit data.</li>
+      <li><strong>Remote Labs:</strong> IoT-enabled kits used at home for live science experiments.</li>
+      <li><strong>Interactive Boards:</strong> IoT-linked whiteboards syncing notes and usage stats.</li>
+      <li><strong>Student Performance:</strong> Wearables and environment tracking to assess concentration and fatigue.</li>
+      <li><strong>Smart Libraries:</strong> Book movement tracking and auto check-in/check-out via RFID.</li>
+      <li><strong>Emergency Alerts:</strong> Automated fire, earthquake, or lockdown alerts sent to teachers and parents.</li>
+    </ul>
+  </div>
+
+  <div class="module chatbot">
+    <h2>💬 EduBot Assistant</h2>
+    <div class="chat-window" id="chatWindow">
+      <div class="chat-bubble bot">Hi there! Ask me about smart classrooms, remote labs, or smart libraries.</div>
+    </div>
+    <input type="text" id="userInput" placeholder="Type your education tech question...">
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
+</div>
+
+<script>
+  function sendMessage() {
+    const input = document.getElementById('userInput');
+    const message = input.value.trim();
+    if (!message) return;
+
+    const chatWindow = document.getElementById('chatWindow');
+    const userBubble = document.createElement('div');
+    userBubble.className = 'chat-bubble user';
+    userBubble.textContent = message;
+    chatWindow.appendChild(userBubble);
+
+    const botBubble = document.createElement('div');
+    botBubble.className = 'chat-bubble bot';
+
+    const lower = message.toLowerCase();
+    let response = "I’m still learning! Try asking about labs, libraries, attendance, or remote classes.";
+
+    if (lower.includes("classroom") || lower.includes("air") || lower.includes("light")) {
+      response = "Smart classrooms adjust air quality, lights, and take attendance automatically.";
+    } else if (lower.includes("lab") || lower.includes("experiment")) {
+      response = "IoT-enabled labs track equipment and allow remote science experiments from home.";
+    } else if (lower.includes("attendance") || lower.includes("rfid") || lower.includes("biometric")) {
+      response = "Attendance can be recorded via RFID wearables or biometric sensors.";
+    } else if (lower.includes("library") || lower.includes("book")) {
+      response = "Smart libraries use IoT to track book movements and automate check-outs.";
+    } else if (lower.includes("emergency") || lower.includes("fire") || lower.includes("lockdown")) {
+      response = "Emergency alerts are triggered automatically and sent to parents and faculty.";
+    }
+
+    botBubble.textContent = response;
+    chatWindow.appendChild(botBubble);
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+    input.value = '';
+  }
+</script>
+
+</body>
+</html>
