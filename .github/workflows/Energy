@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>⚡ Neuro OS in Energy & Environment</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5fff5;
+      color: #2e3e2e;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: #27ae60;
+      color: white;
+      padding: 30px 15px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin: 0;
+    }
+
+    .subtitle {
+      font-size: 1.1em;
+      color: #c4f8d2;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .module {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      padding: 25px;
+      margin-bottom: 25px;
+    }
+
+    .module h2 {
+      color: #27ae60;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    li {
+      margin: 12px 0;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    li::before {
+      content: "⚡";
+      position: absolute;
+      left: 0;
+    }
+
+    .chatbot {
+      background: #fefefe;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+      padding: 20px;
+    }
+
+    .chat-window {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      height: 240px;
+      overflow-y: auto;
+      padding: 10px;
+      background: #fff;
+      margin-bottom: 10px;
+      font-size: 0.95em;
+    }
+
+    .chat-bubble {
+      margin: 8px 0;
+    }
+
+    .user {
+      text-align: right;
+      color: #27ae60;
+    }
+
+    .bot {
+      text-align: left;
+      color: #444;
+    }
+
+    input[type="text"] {
+      width: 80%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 10px;
+      background: #27ae60;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1e9a51;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>⚡ Neuro OS in Energy & Environment</h1>
+  <p class="subtitle">IoT and AI driving sustainability and safety</p>
+</header>
+
+<div class="container">
+
+  <div class="module">
+    <h2>🌍 Key Modules</h2>
+    <ul>
+      <li><strong>Smart Grids:</strong> Balance energy loads based on real-time demand.</li>
+      <li><strong>Renewable Monitoring:</strong> IoT systems in solar/wind farms ensure efficiency.</li>
+      <li><strong>Smart Meters:</strong> Track individual energy usage and detect anomalies.</li>
+      <li><strong>Disaster Management:</strong> Sensors provide early warnings for floods, earthquakes, etc.</li>
+      <li><strong>Water Quality:</strong> Real-time detection of contaminants in municipal supplies.</li>
+    </ul>
+  </div>
+
+  <div class="module chatbot">
+    <h2>💬 Sustainability Chatbot</h2>
+    <div class="chat-window" id="chatWindow">
+      <div class="chat-bubble bot">Hi there! Ask me about smart grids, solar monitoring, or disaster warnings.</div>
+    </div>
+    <input type="text" id="userInput" placeholder="Ask your environmental tech question..." />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
+</div>
+
+<script>
+  function sendMessage() {
+    const input = document.getElementById('userInput');
+    const message = input.value.trim();
+    if (!message) return;
+
+    const chatWindow = document.getElementById('chatWindow');
+
+    const userBubble = document.createElement('div');
+    userBubble.className = 'chat-bubble user';
+    userBubble.textContent = message;
+    chatWindow.appendChild(userBubble);
+
+    const botBubble = document.createElement('div');
+    botBubble.className = 'chat-bubble bot';
+
+    const lower = message.toLowerCase();
+
+    let response = "Sorry, can you rephrase? Try asking about grids, solar, floods, or meters.";
+
+    if (lower.includes("smart grid") || lower.includes("grid")) {
+      response = "Smart Grids use IoT to balance electricity supply and demand in real time.";
+    } else if (lower.includes("solar") || lower.includes("wind")) {
+      response = "Solar and wind farms use IoT sensors to optimize energy generation and detect issues.";
+    } else if (lower.includes("smart meter") || lower.includes("energy usage") || lower.includes("consumption")) {
+      response = "Smart meters monitor energy consumption in homes/offices and send usage data in real time.";
+    } else if (lower.includes("disaster") || lower.includes("flood") || lower.includes("earthquake")) {
+      response = "Disaster management systems use IoT to detect early signs of natural hazards and alert authorities.";
+    } else if (lower.includes("water") || lower.includes("quality")) {
+      response = "Water quality sensors detect contaminants like bacteria or chemicals in pipelines instantly.";
+    }
+
+    botBubble.textContent = response;
+    chatWindow.appendChild(botBubble);
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+    input.value = '';
+  }
+</script>
+
+</body>
+</html>
