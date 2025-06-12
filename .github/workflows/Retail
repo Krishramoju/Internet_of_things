@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🛍️ Neuro OS in Smart Retail</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fdfdfd;
+      color: #2c3e50;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: #d35400;
+      color: white;
+      padding: 30px 15px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin: 0;
+    }
+
+    .subtitle {
+      font-size: 1.1em;
+      color: #ffe0c7;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .module {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      padding: 25px;
+      margin-bottom: 25px;
+    }
+
+    .module h2 {
+      color: #e67e22;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    li {
+      margin: 12px 0;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    li::before {
+      content: "🛒";
+      position: absolute;
+      left: 0;
+    }
+
+    .chatbot {
+      background: #fefefe;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+      padding: 20px;
+    }
+
+    .chat-window {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      height: 240px;
+      overflow-y: auto;
+      padding: 10px;
+      background: #fff;
+      margin-bottom: 10px;
+      font-size: 0.95em;
+    }
+
+    .chat-bubble {
+      margin: 8px 0;
+    }
+
+    .user {
+      text-align: right;
+      color: #e67e22;
+    }
+
+    .bot {
+      text-align: left;
+      color: #444;
+    }
+
+    input[type="text"] {
+      width: 80%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 10px;
+      background: #e67e22;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #cf6d17;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🛍️ Neuro OS in Smart Retail</h1>
+  <p class="subtitle">IoT and AI transforming modern retail experiences</p>
+</header>
+
+<div class="container">
+
+  <div class="module">
+    <h2>🔍 Retail Modules</h2>
+    <ul>
+      <li><strong>Smart Shelves:</strong> IoT sensors track inventory in real time.</li>
+      <li><strong>Footfall Analysis:</strong> Tracks customer movement for layout planning.</li>
+      <li><strong>Smart POS:</strong> Contactless checkouts via IoT-enabled devices.</li>
+      <li><strong>Cold Storage Monitoring:</strong> Ensures food safety and compliance.</li>
+      <li><strong>Personalized Advertising:</strong> Adapts to behavior in-store in real time.</li>
+    </ul>
+  </div>
+
+  <div class="module chatbot">
+    <h2>🧠 Retail AI Chatbot</h2>
+    <div class="chat-window" id="chatWindow">
+      <div class="chat-bubble bot">Hello! Ask me anything about our smart retail solutions.</div>
+    </div>
+    <input type="text" id="userInput" placeholder="Ask about smart POS, shelves, etc." />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
+</div>
+
+<script>
+  function sendMessage() {
+    const input = document.getElementById('userInput');
+    const message = input.value.trim();
+    if (!message) return;
+
+    const chatWindow = document.getElementById('chatWindow');
+
+    const userBubble = document.createElement('div');
+    userBubble.className = 'chat-bubble user';
+    userBubble.textContent = message;
+    chatWindow.appendChild(userBubble);
+
+    const botBubble = document.createElement('div');
+    botBubble.className = 'chat-bubble bot';
+
+    const lower = message.toLowerCase();
+
+    let response = "I'm not sure I understand. Can you ask about Smart Shelves, POS, or Inventory?";
+
+    if (lower.includes("shelf") || lower.includes("inventory")) {
+      response = "Smart shelves use RFID and weight sensors to detect inventory levels in real-time.";
+    } else if (lower.includes("foot") || lower.includes("customer movement")) {
+      response = "Footfall analysis uses motion sensors to track movement and help optimize store layout.";
+    } else if (lower.includes("pos") || lower.includes("checkout")) {
+      response = "Smart POS systems support fast, contactless checkouts using NFC, QR codes, and AI billing.";
+    } else if (lower.includes("cold") || lower.includes("temperature")) {
+      response = "IoT-enabled cold storage keeps perishables safe by monitoring and adjusting temperature constantly.";
+    } else if (lower.includes("ads") || lower.includes("advertisement") || lower.includes("personalized")) {
+      response = "Personalized advertising uses AI to recommend products based on real-time behavior analysis.";
+    }
+
+    botBubble.textContent = response;
+    chatWindow.appendChild(botBubble);
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+    input.value = '';
+  }
+</script>
+
+</body>
+</html>
